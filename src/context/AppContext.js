@@ -4,7 +4,7 @@ export const AppContent=createContext();
 export const AppContextProvider=(props)=>{
     axios.defaults.withCredentials=true;
     const [isLogin,setIsLogin]=useState(false);
-    const [userData,setUserData]=useState(false);
+    const [userData,setUserData]=useState(null);
     const isUserAuthorized=async()=>{
         const {data}=await axios.get('https://backend-user-authentication.vercel.app/api/auth/is-auth');
         try{
