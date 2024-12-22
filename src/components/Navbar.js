@@ -12,7 +12,7 @@ const Navbar = () => {
     const sendVerificationOtp=async()=>{
       axios.defaults.withCredentials=true;
       try{
-      const {data}=await axios.post('https://backend-user-authentication.vercel.app/auth/send-email-otp');
+      const {data}=await axios.post('https://backend-user-authentication.vercel.app/api/auth/send-email-otp');
       if(data.success){
         handelNavigate('/email-verify');
         alert(data.msg);
@@ -24,7 +24,7 @@ const Navbar = () => {
     const logout=async()=>{
       try{
         axios.defaults.withCredentials=true;
-          const {data}=await axios.post('http://localhost:4000/api/auth/logout');
+          const {data}=await axios.post('https://backend-user-authentication.vercel.app/api/auth/logout');
           if(data.success){
             setIsLogin(false);
             setUserData(false);

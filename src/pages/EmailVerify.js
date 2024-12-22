@@ -26,7 +26,7 @@ const EmailVerify = () => {
       e.preventDefault();
       const otparray=inputRefs.current.map(e=>e.value);
       const otp=otparray.join('');
-      const {data}=await axios.post('https://backend-user-authentication.vercel.app/auth/verify-email-otp',{otp})
+      const {data}=await axios.post('https://backend-user-authentication.vercel.app/api/auth/verify-email-otp',{otp})
       if(data.success){
         setIsLogin(true);
         getUser();

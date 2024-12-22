@@ -14,7 +14,7 @@ const PasswordReset = () => {
   const onEmailSubmit=async(e)=>{
        try{
         e.preventDefault();
-        const {data}=await axios.post('https://backend-user-authentication.vercel.app/auth/send-resetotp',{email});
+        const {data}=await axios.post('https://backend-user-authentication.vercel.app/api/auth/send-resetotp',{email});
         if(data.success){
           setEmailSent(true);
           alert(data.msg);
@@ -50,7 +50,7 @@ const PasswordReset = () => {
    const submitNewPass=async(e)=>{
     try{
       e.preventDefault();
-      const {data}=await axios.post('https://backend-user-authentication.vercel.app/auth/verify-resetotp',{email,otp,newPassword});
+      const {data}=await axios.post('https://backend-user-authentication.vercel.app/api/auth/verify-resetotp',{email,otp,newPassword});
       if(data.success){
         alert(data.msg);
         handleNavigate('/login');
