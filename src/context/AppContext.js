@@ -6,7 +6,7 @@ export const AppContextProvider=(props)=>{
     const [isLogin,setIsLogin]=useState(false);
     const [userData,setUserData]=useState(false);
     const isUserAuthorized=async()=>{
-        const {data}=await axios.get('https://backend-user-authentication.vercel.app/auth/is-auth');
+        const {data}=await axios.get('https://backend-user-authentication.vercel.app/auth/is-auth',{withCredentials:true});
         try{
         if(data.success){
             setIsLogin(true);
