@@ -6,7 +6,7 @@ export const AppContextProvider=(props)=>{
     const [isLogin,setIsLogin]=useState(false);
     const [userData,setUserData]=useState(false);
     const isUserAuthorized=async()=>{
-        const {data}=await axios.get('https://backend-user-authentication.vercel.app/auth/is-auth',{withCredentials:true});
+        const {data}=await axios.get('https://backend-user-authentication.vercel.app/api/auth/is-auth',{withCredentials:true});
         try{
         if(data.success){
             setIsLogin(true);
@@ -17,7 +17,7 @@ export const AppContextProvider=(props)=>{
     }
     }
     const getUser=async()=>{
-        const {data}=await axios.get('https://backend-user-authentication.vercel.app/user/userdata')
+        const {data}=await axios.get('https://backend-user-authentication.vercel.app/api/user/userdata',{withCredentials:true})
         console.log(data)
         data.success ? setUserData(data.userData) : alert('user not found');
 

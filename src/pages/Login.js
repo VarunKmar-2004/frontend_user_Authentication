@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         axios.defaults.withCredentials=true;
         if(state==="Login"){
-            const {data}=await axios.post("https://backend-user-authentication.vercel.app/auth/login",{email,password});
+            const {data}=await axios.post("https://backend-user-authentication.vercel.app/api/auth/login",{email,password});
             console.log(data)
             if(data.success){
                 setIsLogin(true);
@@ -27,7 +27,7 @@ const Login = () => {
             }
         }
         else{
-            const {data}=await axios.post('https://backend-user-authentication.vercel.app/auth/register',{username,email,password});
+            const {data}=await axios.post('https://backend-user-authentication.vercel.app/api/auth/register',{username,email,password});
             if(data.success){
                 setIsLogin(true);
                 getUser();
