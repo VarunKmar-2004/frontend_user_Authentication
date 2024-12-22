@@ -24,7 +24,7 @@ const Navbar = () => {
     const logout=async()=>{
       try{
         axios.defaults.withCredentials=true;
-          const {data}=await axios.post('https://backend-user-authentication.vercel.app/auth/logout');
+          const {data}=await axios.post('http://localhost:4000/api/auth/logout');
           if(data.success){
             setIsLogin(false);
             setUserData(false);
