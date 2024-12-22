@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         axios.defaults.withCredentials=true;
         if(state==="Login"){
-            const {data}=await axios.post("https://backend-user-authentication.vercel.app/api/auth/login",{email,password});
+            const {data}=await axios.post("http:localhost:4000/api/auth/login",{email,password});
             console.log(data)
             if(data.success){
                 setIsLogin(true);
