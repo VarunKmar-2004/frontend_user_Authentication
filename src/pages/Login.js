@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom"
 import axios from "axios"
 import { AppContent } from '../context/AppContext'
 const Login = () => {
+    axios.defaults.withCredentials=true;
     const [state,setState]=useState("Sign-Up");
     const {setIsLogin, getUser}=useContext(AppContent);
     const [username,setUsername]=useState(null);
@@ -13,7 +14,6 @@ const Login = () => {
     const handelSubmit=async(e)=>{
        try{
         e.preventDefault();
-        axios.defaults.withCredentials=true;
         if(state==="Login"){
             const {data}=await axios.post("https://backend-user-authentication.vercel.app/api/auth/login",{email,password});
             console.log(data)

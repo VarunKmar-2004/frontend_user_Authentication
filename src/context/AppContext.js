@@ -4,9 +4,9 @@ export const AppContent=createContext();
 export const AppContextProvider=(props)=>{
     axios.defaults.withCredentials=true;
     const [isLogin,setIsLogin]=useState(false);
-    const [userData,setUserData]=useState(false);
+    const [userData,setUserData]=useState(null);
     const isUserAuthorized=async()=>{
-        const {data}=await axios.get('https://backend-user-authentication.vercel.app/api/auth/is-auth',{withCredentials:true});
+        const {data}=await axios.get('https://backend-user-authentication.vercel.app/api/auth/is-auth');
         try{
         if(data.success){
             setIsLogin(true);
@@ -16,11 +16,20 @@ export const AppContextProvider=(props)=>{
         alert(err.message);
     }
     }
-    const getUser=async()=>{
-        const {data}=await axios.get('https://backend-user-authentication.vercel.app/api/user/userdata',{withCredentials:true})
-        console.log(data)
-        data.success ? setUserData(data.userData) : alert('user not found');
-
+    const getUser = async () => {
+        try {
+            const { data } = await axios.get('https://backend-user-authentication.vercel.app/api/user/userdata');
+            console.log("User Data Response:", data);
+            if (data.success) {
+                setUserData(data.userData);
+            } else {
+                alert('User not found');
+                setIsLogin(false);  // Logout if user data is not found
+            }
+        } catch (err) {
+            console.error("Fetching User Data Error:", err.message);
+            alert('Failed to fetch user data');
+        }
     }
     useEffect(()=>{
         isUserAuthorized();
